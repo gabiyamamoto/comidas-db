@@ -1,0 +1,24 @@
+{
+  "name": "comidas-db",
+  "version": "1.0.0",
+  "description": "API backend com DB",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "studio": "npx prisma studio"
+  },
+  "keywords": [
+    "backend"
+  ],
+  "author": "Gabi Emi",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.17.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.17.0"
+  }
+}
