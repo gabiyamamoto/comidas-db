@@ -1,4 +1,4 @@
-import * as ComidasModel from './../models/comidasModel'
+import * as ComidasModel from './../models/comidasModel.js'
 
 export const listarTodos = async (req, res) => {
     try {
