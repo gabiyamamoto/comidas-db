@@ -15,5 +15,5 @@ app.get("/", (req, res) => {
 app.use('/comidas', comidasRoutes)
 
 app.listen(serverPort, () => {
-    console.log(`🚀 Servidor rodando em http://localhost:${serverPort} 🚀`);
+    console.log(`🚀 Servidor rodando em http://localhost:${serverPort}/comidas 🚀`);
 });
