@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "studio": "npx prisma studio",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "prisma db seed"
   },
   "keywords": [
     "backend"
@@ -23,6 +23,12 @@
     "prisma": "^6.17.0"
   },
   "devDependencies": {
-    "tsx": "^4.20.6"
+    "@types/node": "^24.9.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }
