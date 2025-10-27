@@ -13,13 +13,31 @@ export const findById = async (id) => {
     })
 }
 
-export const criar = async (dado) => {
+export const criar = async (data) => {
     return await prisma.comidas.create({
         data: {
-            nome: nome.data,
-            tipo: tipo.data,
-            preco: preco.data,
-            descricao: descricao.data
+            nome: data.nome,
+            tipo: data.tipo,
+            preco: data.preco,
+            descricao: data.descricao
+        }
+    })
+}
+
+export const deletar = async (id) => {
+    return await prisma.comidas.delete({
+        where: { id: Number(id) }
+    })
+}
+
+export const atualizar = async (id, data) => {
+    return await prisma.comidas.update({
+        where: { id: Number(id) },
+        data: {
+            ...(data.nome && { nome: data.nome }),
+            ...(data.tipo && { tipo: data.tipo }),
+            ...(data.preco && { preco: Number(data.preco) }),
+            ...(data.descricao && { descricao: data.descricao })
         }
     })
 }

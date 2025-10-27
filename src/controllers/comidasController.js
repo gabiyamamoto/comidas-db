@@ -63,7 +63,7 @@ export const criar = async (req, res) => {
         const data = req.body;
 
         const camposObrigatorios = ['nome', 'tipo', 'preco', 'descricao'];
-        const faltando = camposObrigatorios.filter(campo => !data[campo])
+        const faltando = camposObrigatorios.filter(campo => !data[campo]);
 
         if (faltando.length > 0) {
             return res.status(400).json({
@@ -81,6 +81,63 @@ export const criar = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             erro: 'Erro ao criar a comida',
+            detalhes: error.message
+        })
+    }
+}
+
+export const deletar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+
+        const comidaExiste = await ComidasModel.findById(id);
+
+        if (!comidaExiste) {
+            res.statu(404).json({
+                erro: 'Comida não encontrada com esse id!',
+                id: id
+            })
+        }
+
+        await ComidasModel.deletar(id);
+
+        res.status(200).json({
+            mensagem: 'Comida deletada com sucesso',
+            comidaRemovida: comidaExiste
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao deletar comida!',
+            detalhes: error.message
+        })
+    }
+}
+
+export const atualizar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const data = req.body;
+
+        const comidaExiste = await ComidasModel.findById(id);
+
+        if (!comidaExiste) {
+            return res.status(404).json({
+                erro: 'Comida não encontrada com esse id!',
+                id: id
+            })
+        }
+
+        const comidaAtulizada = await ComidasModel.atualizar(id, data)
+
+        res.status(200).json({
+            mensagem: 'Comida atualizada com sucesso!',
+            comidaAtulizada: comidaAtulizada
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao atualizar comida!',
             detalhes: error.message
         })
     }
